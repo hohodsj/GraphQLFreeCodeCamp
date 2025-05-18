@@ -27,6 +27,11 @@ const resolvers = {
         author(_, args) {
             return db.authors.find((author) => author.id === args.id);
         },
+    },
+    Game: {
+        reviews(parent) { // parent is the game object, first query resolver from above, now we are in the game resolver
+            return db.reviews.filter((review) => review.game_id === parent.id);
+        }
     }
 }
 
